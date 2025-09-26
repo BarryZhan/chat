@@ -19,12 +19,19 @@ echo "复制文件..."
 # 复制 standalone 构建文件
 cp -r .next/standalone/* dist/
 
-# 复制静态文件
+# 复制静态文件和服务端文件
 mkdir -p dist/.next
 cp -r .next/static dist/.next/static
+cp -r .next/server dist/.next/server
 
 # 复制 public 文件
 cp -r public dist/
+
+# 复制 MCP 配置
+if [ -d "app/mcp" ]; then
+    mkdir -p dist/app/mcp
+    cp -r app/mcp/* dist/app/mcp/
+fi
 
 # 复制环境变量文件
 [ -f ".env" ] && cp .env dist/
