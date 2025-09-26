@@ -8,6 +8,12 @@ console.log("[Next] build with chunk: ", !disableChunk);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    serverActions: {
+      allowedOrigins: ["chat.barry.pw", "chat.barry.pw:443", "localhost:3000"]
+    },
+    forceSwcTransforms: true,
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
@@ -29,9 +35,6 @@ const nextConfig = {
   output: mode,
   images: {
     unoptimized: mode === "export",
-  },
-  experimental: {
-    forceSwcTransforms: true,
   },
 };
 
