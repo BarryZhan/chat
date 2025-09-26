@@ -42,6 +42,15 @@ else
     echo "⚠️ .next/server 目录不存在，跳过"
 fi
 
+# 复制必要的 manifest 文件
+echo "复制 manifest 文件..."
+[ -f ".next/BUILD_ID" ] && cp .next/BUILD_ID dist/.next/ && echo "✅ BUILD_ID 已复制"
+[ -f ".next/build-manifest.json" ] && cp .next/build-manifest.json dist/.next/ && echo "✅ build-manifest.json 已复制"
+[ -f ".next/routes-manifest.json" ] && cp .next/routes-manifest.json dist/.next/ && echo "✅ routes-manifest.json 已复制"
+[ -f ".next/prerender-manifest.json" ] && cp .next/prerender-manifest.json dist/.next/ && echo "✅ prerender-manifest.json 已复制"
+[ -f ".next/react-loadable-manifest.json" ] && cp .next/react-loadable-manifest.json dist/.next/ && echo "✅ react-loadable-manifest.json 已复制"
+[ -f ".next/required-server-files.json" ] && cp .next/required-server-files.json dist/.next/ && echo "✅ required-server-files.json 已复制"
+
 echo "复制 public 文件..."
 if [ -d "public" ]; then
     cp -r public dist/
